@@ -11,19 +11,21 @@ let state = {
 
 //How to state ingredient 1 - Reduce
 let array = [1, 5, 2, 6, 4]
-let startingSum = 0;
+let startingSum = 5;
 
 let mashTogetherFunction = (currentRunningResult, nextNumber) => {
     //This is the sum of all previous numbers
     currentRunningResult;
-
-    nextNumber;
-    return currentRunningResult + nextNumber
+    
+    let str = "I am " +  nextNumber;
+    currentRunningResult.push(str)
+    currentRunningResult
+    return currentRunningResult
 }
 
 //We can use the reduce function to mash together everything in an array
 //Reduce takes in a function that receives the current running result plus the next item in the array
-let sum = array.reduce(mashTogetherFunction, startingSum)
+let sum = array.reduce(mashTogetherFunction, [])
 sum;
 
 // TRY IT
@@ -47,8 +49,15 @@ let objects = [{
     age: 8,
 },
 {
-    name: "Joey",
-}]
+    name: "Joseph",
+},
+{
+    age: 9
+},
+{
+    petname: 'George'
+}
+]
 
 let allObjectsCombined = objects.reduce((currentMash, nextObject) => {
     currentMash;
@@ -97,26 +106,36 @@ function updateAge(age) {
     }
 }
 
+function updateCereal(cereal) {
+    return{
+        type: 'update_cereal',
+        cereal: cereal
+    }
+}
+
+
 function reducer(state, action) {
     switch (action.type) {
         case "update_age":
             return Object.assign({}, state, { age: action.age })
+        case "update_cereal":
+            return Object.assign({}, state, {cereal: action.cereal})
     }
 }
-let ageAction = updateAge(12);
-let state10 = reducer(allObjectsCombined, ageAction);
-state10;
+let ageAction = updateAge(13);
+let cerealAction = updateCereal('coococococococ')
+let state11 = reducer(allObjectsCombined, ageAction,);
+state11;
+
+let action3 = updateCereal('captain crunch')
+let state12 = reducer(state11, action3 )
+state12
 
 //Try it
 // 1. Change Joey's age to 13
 // 2. Create an action builder for update cereal and use it to update your state
 
-function reducer(state, action) {
-    switch (action.type) {
-        case "update_age":
-            return Object.assign({}, state, { age: action.age })
-    }
-}
+
 let ageAction2 = updateAge(12);
 let state10 = reducer(allObjectsCombined, ageAction2);
 state10;

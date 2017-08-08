@@ -1,7 +1,7 @@
 //This is a reducer file, in projects we're going to call it a duck (re-duck, get it?!)
 //We put all action builders and the reducer function in here.
 //We can make as many reducers as we want, in as many files as we want to split up our code in easier to understand chunks.
-
+import axios from 'axios'
 //CONSTANTS
 const UPDATE_NAME = "UPDATE_NAME";
 const ADD_PERSON = "ADD_PERSON"
@@ -49,7 +49,7 @@ export default function (state = initialState, action) {
         case GET_PEOPLE + "_FULFILLED":
             let data = action.payload //The response data is found here put it on state or do stuff
         case GET_PEOPLE + "_REJECTED":
-            let data = action.payload
+            let error = action.payload
     }
 
     return state;
